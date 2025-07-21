@@ -1,0 +1,113 @@
+@base_url=http://127.0.0.1:5000
+
+# **Customers Routes**
+
+### Customers - Get customers
+GET {{base_url}}/customers
+
+### GET - a single customer by id
+GET {{base_url}}/customers/1
+
+### POST - Create a new customer
+POST {{base_url}}/customers
+Content-Type: application/json
+
+{"name": "Alice", "address": "123 Main St", "phone": "555-1234"}
+
+### PUT - update a user by id
+PUT {{base_url}}/customers/1
+Content-Type: application/json
+
+{"name": "Brian"}
+
+### DELETE - a user by id
+DELETE {{base_url}}/customers/1
+
+# **Subscriptions Routes**
+
+### GET - subs
+GET {{base_url}}/subscriptions
+
+### GET - sub by id
+GET {{base_url}}/subscriptions/1
+
+### PUT - update sub by id
+PUT {{base_url}}/subscriptions/1
+Content-Type: application/json
+
+{
+    "end_date": "2025-07-31"
+}
+
+### POST - create a new sub
+POST {{base_url}}/subscriptions
+Content-Type: application/json
+
+{
+    "customer_id": 1,
+    "publication_id": 1,
+    "start_date": "2025-07-21"
+}
+
+### DELETE - sub by id
+DELETE {{base_url}}/subscriptions/1
+
+# **Publication Routes**
+
+### GET - Get all publications
+GET {{base_url}}/publications
+
+### GET - Get a single publication by ID
+GET {{base_url}}/publications/1
+
+### POST - Create a new publication
+POST {{base_url}}/publications
+Content-Type: application/json
+
+{
+  "title": "Tech Times",
+  "type": "newspaper"
+}
+
+### PUT - Update publication by ID
+PUT {{base_url}}/publications/1
+Content-Type: application/json
+
+{
+  "title": "Tech Daily"
+}
+
+### DELETE - Delete publication by ID
+DELETE {{base_url}}/publications/2
+
+# **Delivery Routes**
+
+### POST - Create Delivery Assignment
+POST {{base_url}}/deliveries
+Content-Type: application/json
+
+{
+    "delivery_person_id": 1,
+    "date": "2025-07-21",
+    "address": "123 Main St, Cityville",
+    "publication_ids": [1, 2]
+}
+
+
+### GET - all Delivery Assignments
+GET {{base_url}}/deliveries
+
+### GET - a Specific Delivery Assignment
+GET {{base_url}}/deliveries/1
+
+### PUT - update Delivery Assignment
+PUT {{base_url}}/deliveries/1
+Content-Type: application/json
+
+{
+    "address": "456 Elm St, Townville",
+    "publication_ids": [2, 3]
+}
+
+### DELETE - delete Delivery Assignment
+DELETE {{base_url}}/deliveries/1

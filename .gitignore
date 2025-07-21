@@ -1,0 +1,19 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+
+# Flask environment files
+.env
+
+# Virtualenv
+venv/
+
+# IDE folders
+.vscode/
+.idea/
+
+# Miscellaneous
+/todo.md
