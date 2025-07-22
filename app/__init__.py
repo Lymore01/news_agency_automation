@@ -4,6 +4,8 @@ from .customer import customer_bp
 from .subscription import subscription_bp
 from .publication import publication_bp
 from .delivery import delivery_bp
+from .carrier import carrier_bp
+from .location import location_bp
 
 def create_app():
     app = Flask(__name__)
@@ -18,6 +20,8 @@ def create_app():
     app.register_blueprint(subscription_bp)
     app.register_blueprint(publication_bp)
     app.register_blueprint(delivery_bp)
+    app.register_blueprint(carrier_bp)
+    app.register_blueprint(location_bp)
 
     with app.app_context():
         db.create_all()

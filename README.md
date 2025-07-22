@@ -1,21 +1,6 @@
-# Newspaper Agency Automation System
+# Just a fun project
 
-This project is a **Newspaper Agency Automation System** built with **Flask** and **SQLAlchemy**. It manages customers, subscriptions, publications, and delivery assignments for a newspaper agency.
-
-## Features
-
-- **Customer Management**: Add, view, and update customers.
-- **Subscription Management**: Manage customer subscriptions to different publications.
-- **Delivery Person Management**: Assign delivery persons to specific delivery assignments.
-- **Geographical Delivery Route Assignment**: Assign delivery routes to delivery persons based on geographical locations.
-
-## Technologies Used
-
-- **Python** 3.x
-- **Flask**: Web framework for the API.
-- **SQLAlchemy**: ORM for managing the database.
-- **SQLite**: Lightweight database for development.
-- **Alembic**: Database migrations for schema changes.
+![Screenshot of problem](./assets/screenshot.png)
 
 ## Setup
 

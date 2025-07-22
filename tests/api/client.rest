@@ -39,14 +39,22 @@ Content-Type: application/json
     "end_date": "2025-07-31"
 }
 
-### POST - create a new sub
-POST {{base_url}}/subscriptions
+### Subscribe user to a publication
+POST {{base_url}}/subscriptions/subscribe
 Content-Type: application/json
 
 {
-    "customer_id": 1,
-    "publication_id": 1,
-    "start_date": "2025-07-21"
+  "customer_id": 1,
+  "publication_id": 2
+}
+
+### Unsubscribe user from a publication (with at least 1 week notice)
+POST {{base_url}}/subscriptions/unsubscribe
+Content-Type: application/json
+
+{
+  "customer_id": 1,
+  "publication_id": 2
 }
 
 ### DELETE - sub by id
@@ -69,6 +77,15 @@ Content-Type: application/json
   "type": "newspaper"
 }
 
+### second publication
+POST {{base_url}}/publications
+Content-Type: application/json
+
+{
+  "title": "Good Times",
+  "type": "magazine"
+}
+
 ### PUT - Update publication by ID
 PUT {{base_url}}/publications/1
 Content-Type: application/json
@@ -80,6 +97,55 @@ Content-Type: application/json
 ### DELETE - Delete publication by ID
 DELETE {{base_url}}/publications/2
 
+
+# **Carrier Routes**
+### POST - Create a new carrier
+POST {{base_url}}/carriers
+Content-Type: application/json
+
+{
+    "name": "Jane Doe",
+    "vehicle_type": "Truck",
+    "vehicle_id": "DB1234",
+    "phone": "122-456-7890",
+    "is_active": true,
+    "latitude": -122.4195,
+    "longitude": 37.7750
+}
+
+### GET - all carriers
+GET {{base_url}}/carriers
+
+### GET -  a specific carrier
+GET {{base_url}}/carriers/2
+
+### PUT - Update a carrier
+PUT {{base_url}}/carriers/1
+Content-Type: application/json
+
+{
+    "latitude": -122.4195,
+    "longitude": 37.7750
+}
+
+# {
+#     "name": "John Doe Updated",
+#     "vehicle_type": "Truck",
+#     "vehicle_id": "XY1234",
+#     "phone": "555-555-5555",
+#     "is_active": false
+# }
+
+### Activate Carrier
+PUT {{base_url}}/carriers/1/activate
+
+### Deactivate carrier
+PUT {{base_url}}/carriers/1/deactivate
+
+### Delete a carrier
+DELETE {{base_url}}/carriers/1
+
+
 # **Delivery Routes**
 
 ### POST - Create Delivery Assignment
@@ -87,27 +153,101 @@ POST {{base_url}}/deliveries
 Content-Type: application/json
 
 {
+    "date": "2025-07-22",
+    "location_ids": [2],
+    "publication_ids": [1]
+}
+
+# {
+#     "delivery_person_id": 1,
+#     "date": "2025-07-21",
+#     "location_ids": [1],
+#     "publication_ids": [1]
+# }
+### create assignment 2
+POST {{base_url}}/deliveries
+Content-Type: application/json
+
+{
     "delivery_person_id": 1,
     "date": "2025-07-21",
-    "address": "123 Main St, Cityville",
-    "publication_ids": [1, 2]
+    "location_ids": [2],
+    "publication_ids": [2]
 }
 
 
 ### GET - all Delivery Assignments
 GET {{base_url}}/deliveries
 
+### GET
+GET {{base_url}}/deliveries?delivery_person_id=1
+
+###
+GET {{base_url}}/deliveries?date=2025-07-21
+
+###
+GET {{base_url}}/deliveries?delivery_person_id=1&date=2025-07-21
+
 ### GET - a Specific Delivery Assignment
-GET {{base_url}}/deliveries/1
+GET {{base_url}}/deliveries/5
 
 ### PUT - update Delivery Assignment
 PUT {{base_url}}/deliveries/1
 Content-Type: application/json
 
 {
-    "address": "456 Elm St, Townville",
-    "publication_ids": [2, 3]
+    "location_ids": [1]
 }
+
+### GET - deliveries for a specific date
+GET {{base_url}}/deliveries/daily/2025-07-22
+
+###
+GET {{base_url}}/deliveries/daily/2025-07-22?delivery_person_id=1
+
+### GET - deliveries for a specific person
+GET {{base_url}}/deliveries/person/1
+
+### POST - Assign deliveries
+POST {{base_url}}/deliveries/assign/2025-07-22
+
+###
+POST {{base_url}}/deliveries/assign/2025-07-21?is_active=true
+
 
 ### DELETE - delete Delivery Assignment
 DELETE {{base_url}}/deliveries/1
+
+
+# **Location routes**
+### POST - Create a new location
+POST {{base_url}}/locations
+Content-Type: application/json
+
+{
+    "latitude": 37.7749,
+    "longitude": -122.4194,
+    "address": "123 Main St, San Francisco, CA",
+    "city": "San Francisco",
+    "postal_code": "94103"
+}
+
+### GET - get all locations
+GET {{base_url}}/locations
+
+### GET - get location by id
+GET {{base_url}}/locations/1
+
+### PUT - update location
+PUT {{base_url}}/locations/1
+Content-Type: application/json
+
+{
+    "address": "456 Elm St, San Francisco, CA",
+    "city": "San Francisco",
+    "postal_code": "94105"
+}
+
+### DELETE - location
+DELETE {{base_url}}/locations/1
+
