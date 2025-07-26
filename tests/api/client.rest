@@ -251,3 +251,26 @@ Content-Type: application/json
 ### DELETE - location
 DELETE {{base_url}}/locations/1
 
+
+# ** User auth routes **
+### POST - User Registration
+POST {{base_url}}/auth/register
+Content-Type: application/json
+
+{
+    "email": "testuser2@test.com",
+    "password": "testpass"
+}
+
+
+### POST - User Login
+POST {{base_url}}/auth/login
+Content-Type: application/json
+
+{
+   "email": "testuser2@test.com",
+    "password": "testpass "
+}
+
+### POST - User Logout
+POST {{base_url}}/auth/logout
